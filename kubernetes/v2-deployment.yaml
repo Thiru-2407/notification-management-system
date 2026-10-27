@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-v2
+  labels:
+    app: notification-v2
+    version: v2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: notification-v2
+  template:
+    metadata:
+      labels:
+        app: notification-v2
+        version: v2
+    spec:
+      containers:
+      - name: notification-v2
+        image: thiru247/notification-system:v2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: http
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 5
