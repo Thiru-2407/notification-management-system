@@ -1,0 +1,5 @@
+﻿NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE   SELECTOR
+kubernetes                ClusterIP   10.43.0.1       <none>        443/TCP          36m   <none>
+notification-v1-service   NodePort    10.43.74.71     <none>        8081:30081/TCP   22m   app=notification-v1
+notification-v2-service   NodePort    10.43.253.114   <none>        8082:30082/TCP   22m   app=notification-v2
+notification-v3-service   NodePort    10.43.77.74     <none>        8083:30083/TCP   22m   app=notification-v3

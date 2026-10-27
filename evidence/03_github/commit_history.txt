@@ -1,0 +1,4 @@
+﻿* d95ae22 (HEAD -> main) feat: Add Kubernetes manifests, Jenkinsfile CI/CD, documentation and production deployment config
+* 1dfdac6 (v3) feat(v3): Add advanced error handling, alert priorities, formatted timestamps, and polished enterprise UI
+* 5628b3d (v2) feat(v2): Add SQLite persistence, input validation, and improved UI cards layout
+* d813c45 (v1) feat(v1): Implement Notification Management System v1 with in-memory storage and CRUD UI

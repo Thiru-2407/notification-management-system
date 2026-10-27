@@ -1,0 +1,18 @@
+﻿=== JENKINS PIPELINE INTEGRATION & EXECUTION STATUS ===
+Jenkins URL: http://localhost:8080/
+Service Status: Running in Docker container (ID: b99735a15946)
+Pipeline Configuration: Jenkinsfile (Multi-branch / Parameterized: APP_VERSION = v1, v2, v3)
+
+Pipeline Stages Configured:
+  1. Stage: Checkout (Branch: params.APP_VERSION)
+  2. Stage: Install Dependencies (pip install -r requirements.txt)
+  3. Stage: Run Automated Tests (pytest tests/ -v)
+  4. Stage: Build Docker Image (docker build -t thiru247/notification-system:)
+  5. Stage: Tag Image (docker tag)
+  6. Stage: Authenticate to Docker Hub (credentials: dockerhub-credentials)
+  7. Stage: Push Image to Docker Hub (docker push)
+  8. Stage: Post Actions (docker logout, status report)
+
+Jenkins Execution Status:
+  Jenkins server is live on localhost:8080.
+  To trigger automated remote webhook builds, configure the GitHub repository remote and Docker Hub credentials inside Jenkins.

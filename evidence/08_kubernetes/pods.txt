@@ -1,0 +1,7 @@
+﻿NAME                               READY   STATUS    RESTARTS     AGE     IP            NODE        NOMINATED NODE   READINESS GATES
+notification-v1-54cc5c7847-ktzgq   0/1     Running   6 (9s ago)   7m53s   10.42.0.110   victus-tk   <none>           <none>
+notification-v1-54cc5c7847-pggzb   0/1     Running   6 (9s ago)   7m53s   10.42.0.105   victus-tk   <none>           <none>
+notification-v2-84c65fb697-t96f6   0/1     Running   6 (9s ago)   7m53s   10.42.0.107   victus-tk   <none>           <none>
+notification-v2-84c65fb697-vzkp4   0/1     Running   6 (9s ago)   7m53s   10.42.0.113   victus-tk   <none>           <none>
+notification-v3-7f66cd4859-2zdjd   0/1     Running   6 (9s ago)   7m53s   10.42.0.111   victus-tk   <none>           <none>
+notification-v3-7f66cd4859-4mms7   0/1     Running   6 (9s ago)   7m53s   10.42.0.109   victus-tk   <none>           <none>

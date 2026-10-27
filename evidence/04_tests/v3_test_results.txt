@@ -1,0 +1,16 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\thiru\AppData\Local\Python\pythoncore-3.14-64\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.14.4', 'Platform': 'Windows-11-10.0.26200-SP0', 'Packages': {'pytest': '9.1.1', 'pluggy': '1.6.0'}, 'Plugins': {'locust': '2.47.0', 'html': '4.2.0', 'metadata': '3.1.1'}, 'JAVA_HOME': 'C:\\Program Files\\Java\\jdk-21.0.10'}
+rootdir: C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system
+plugins: locust-2.47.0, html-4.2.0, metadata-3.1.1
+collecting ... collected 6 items
+
+versions/v3/tests/test_app.py::test_v3_health_check PASSED               [ 16%]
+versions/v3/tests/test_app.py::test_v3_empty_notifications_and_stats PASSED [ 33%]
+versions/v3/tests/test_app.py::test_v3_add_notification_with_priorities PASSED [ 50%]
+versions/v3/tests/test_app.py::test_v3_validation_rules PASSED           [ 66%]
+versions/v3/tests/test_app.py::test_v3_delete_operations PASSED          [ 83%]
+versions/v3/tests/test_app.py::test_v3_ui_workflow PASSED                [100%]
+
+============================== 6 passed in 0.79s ==============================

@@ -1,0 +1,4 @@
+﻿NAME              READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS        IMAGES                            SELECTOR
+notification-v1   0/2     2            0           22m   notification-v1   thiru247/notification-system:v1   app=notification-v1
+notification-v2   0/2     2            0           22m   notification-v2   thiru247/notification-system:v2   app=notification-v2
+notification-v3   0/2     2            0           22m   notification-v3   thiru247/notification-system:v3   app=notification-v3

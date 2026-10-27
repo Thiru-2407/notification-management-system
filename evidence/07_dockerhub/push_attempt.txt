@@ -1,0 +1,5 @@
+﻿Push target: docker.io/thiru247/notification-system:v1
+Command: docker push thiru247/notification-system:v1
+Result: PENDING_AUTH
+Output: push access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+Status: Awaiting user Docker Hub authentication or personal access token.

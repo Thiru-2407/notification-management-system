@@ -1,0 +1,55 @@
+=== ENVIRONMENT & TOOL INSPECTION ===
+Date: 2026-10-27 14:50:24
+User: victus-tk\thiru
+OS: Microsoft Windows NT 10.0.26200.0
+
+[VS Code]
+1.143.1
+e646868227c3e3a9e3f24277c8c7220be42c0be7
+x64
+
+[Git]
+git version 2.55.0.windows.5
+User name: Thiru-2407
+User email: thirukumarankarthi@gmail.com
+
+[Python & Pip]
+Python 3.14.4
+pip 26.0.1 from C:\Users\thiru\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pip (python 3.14)
+
+
+[Docker]
+Docker version 29.8.2, build 7fc2dff
+ServerVersion: , OperatingSystem: 
+error during connect: Get "http://172.21.167.203:2375/v1.56/info": dial tcp 172.21.167.203:2375: connectex: No connection could be made because the target machine actively refused it.
+Docker config auths found: 
+
+[Kubernetes / kubectl]
+clientVersion:
+  buildDate: "2026-05-12T09:54:35Z"
+  compiler: gc
+  gitCommit: 756939600b9a7180fc2df6550a4585b638875e67
+  gitTreeState: clean
+  gitVersion: v1.36.1
+  goVersion: go1.26.2
+  major: "1"
+  minor: "36"
+  platform: windows/amd64
+kustomizeVersion: v5.8.1
+
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+Unable to connect to the server: dial tcp 127.0.0.1:6443: connectex: No connection could be made because the target machine actively refused it.
+Unable to connect to the server: dial tcp 127.0.0.1:6443: connectex: No connection could be made because the target machine actively refused it.
+
+[Minikube]
+minikube error: The term 'minikube' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+minikube status error: The term 'minikube' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+
+[Jenkins]
+No Jenkins service registered in Windows Services.
+Port 8080 test: False
+
+[Headless Browser / Edge / Chrome]
+Chrome installed: 155.0.8059.86
+Edge installed: 156.0.4314.42

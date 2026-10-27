@@ -1,0 +1,13 @@
+﻿On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	evidence/01_environment/
+	evidence/02_application/
+	evidence/03_github/
+	evidence/04_tests/
+	evidence/05_jenkins/
+	evidence/06_docker/
+	evidence/08_kubernetes/
+	evidence/09_browser_verification/
+
+nothing added to commit but untracked files present (use "git add" to track)
