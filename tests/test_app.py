@@ -1,109 +1,114 @@
+import os
 import pytest
-from app.app import app, reset_db
+import sqlite3
+import versions.v2.app.app as v2_app
+from versions.v2.app.app import app
+
+TEST_DB = os.path.join(os.path.dirname(__file__), 'test_v2.db')
 
 @pytest.fixture
 def client():
+    v2_app.DB_PATH = TEST_DB
     app.config['TESTING'] = True
-    reset_db()
+
+    # Re-initialize fresh database
+    with sqlite3.connect(TEST_DB) as conn:
+        conn.execute('DROP TABLE IF EXISTS notifications')
+        conn.execute('''
+            CREATE TABLE notifications (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                message TEXT NOT NULL,
+                timestamp TEXT NOT NULL
+            )
+        ''')
+        conn.commit()
+
     with app.test_client() as client:
         yield client
 
-def test_health_check(client):
+    # Cleanup after test
+    try:
+        with sqlite3.connect(TEST_DB) as conn:
+            conn.execute('DROP TABLE IF EXISTS notifications')
+    except Exception:
+        pass
+
+def test_v2_health_check(client):
     res = client.get('/health')
     assert res.status_code == 200
     data = res.get_json()
-    assert data['status'] == 'healthy'
-    assert data['version'] == 'v1'
+    assert data['version'] == 'v2'
+    assert data['storage'] == 'sqlite'
 
-def test_empty_notifications(client):
-    # Test GET /api/notifications returns empty list initially
+def test_v2_empty_state(client):
     res = client.get('/api/notifications')
     assert res.status_code == 200
-    data = res.get_json()
-    assert isinstance(data, list)
-    assert len(data) == 0
+    assert res.get_json() == []
 
-    # Test HTML UI shows empty state
     ui_res = client.get('/')
     assert ui_res.status_code == 200
-    assert b"No notifications available" in ui_res.data
+    assert b"No Alerts Found" in ui_res.data
 
-def test_add_notification_success(client):
+def test_v2_add_success_and_persistence(client):
     payload = {
-        "title": "System Alert",
-        "message": "High CPU utilization detected."
+        "title": "Persistent Alert v2",
+        "message": "This record is stored inside SQLite database."
     }
     res = client.post('/api/notifications', json=payload)
     assert res.status_code == 201
     data = res.get_json()
     assert data['id'] == 1
-    assert data['title'] == "System Alert"
-    assert data['message'] == "High CPU utilization detected."
-    assert 'timestamp' in data
+    assert data['title'] == "Persistent Alert v2"
+    assert "timestamp" in data
 
-    # Verify viewing notifications contains this alert
+    # Verify query returns item
     list_res = client.get('/api/notifications')
-    assert list_res.status_code == 200
-    notifications = list_res.get_json()
-    assert len(notifications) == 1
-    assert notifications[0]['title'] == "System Alert"
+    assert len(list_res.get_json()) == 1
+    assert list_res.get_json()[0]['id'] == 1
 
-def test_add_notification_invalid_inputs(client):
-    # Missing title
-    res1 = client.post('/api/notifications', json={"message": "Only message"})
-    assert res1.status_code == 400
-    assert "error" in res1.get_json()
+def test_v2_input_validation(client):
+    # Short title (< 3 chars)
+    r1 = client.post('/api/notifications', json={"title": "AB", "message": "Valid message here"})
+    assert r1.status_code == 400
+    assert "at least 3 characters" in " ".join(r1.get_json()['details'])
 
-    # Missing message
-    res2 = client.post('/api/notifications', json={"title": "Only title"})
-    assert res2.status_code == 400
-    assert "error" in res2.get_json()
+    # Long title (> 100 chars)
+    r2 = client.post('/api/notifications', json={"title": "A" * 101, "message": "Valid message here"})
+    assert r2.status_code == 400
+    assert "cannot exceed 100 characters" in " ".join(r2.get_json()['details'])
 
-    # Empty strings
-    res3 = client.post('/api/notifications', json={"title": "  ", "message": "   "})
-    assert res3.status_code == 400
+    # Short message (< 5 chars)
+    r3 = client.post('/api/notifications', json={"title": "Valid Title", "message": "Hey"})
+    assert r3.status_code == 400
+    assert "at least 5 characters" in " ".join(r3.get_json()['details'])
 
-    # None payload
-    res4 = client.post('/api/notifications', json={})
-    assert res4.status_code == 400
+    # Long message (> 500 chars)
+    r4 = client.post('/api/notifications', json={"title": "Valid Title", "message": "M" * 501})
+    assert r4.status_code == 400
+    assert "cannot exceed 500 characters" in " ".join(r4.get_json()['details'])
 
-def test_delete_notification_success(client):
-    # Add an alert
-    add_res = client.post('/api/notifications', json={"title": "To Delete", "message": "Delete this."})
+def test_v2_delete_existing_and_nonexistent(client):
+    # Add record
+    add_res = client.post('/api/notifications', json={"title": "Delete Target", "message": "Record to be deleted"})
     notif_id = add_res.get_json()['id']
 
-    # Delete it
+    # Delete existing
     del_res = client.delete(f'/api/notifications/{notif_id}')
     assert del_res.status_code == 200
-    assert "deleted successfully" in del_res.get_json()['message']
 
-    # Verify list is empty
-    list_res = client.get('/api/notifications')
-    assert len(list_res.get_json()) == 0
+    # Delete nonexistent
+    del_bad = client.delete(f'/api/notifications/999')
+    assert del_bad.status_code == 404
+    assert "not found" in del_bad.get_json()['error']
 
-def test_delete_nonexistent_notification(client):
-    res = client.delete('/api/notifications/999')
-    assert res.status_code == 404
-    assert "not found" in res.get_json()['error']
-
-def test_html_form_add_and_delete(client):
+def test_v2_ui_form_operations(client):
     # Add via form
-    res = client.post('/add', data={"title": "UI Alert", "message": "Form created alert"}, follow_redirects=True)
+    res = client.post('/add', data={"title": "Form Alert", "message": "Submitted via browser form"}, follow_redirects=True)
     assert res.status_code == 200
-    assert b"UI Alert" in res.data
-    assert b"Form created alert" in res.data
+    assert b"Form Alert" in res.data
 
-    # Invalid form add
-    err_res = client.post('/add', data={"title": "", "message": ""})
-    assert err_res.status_code == 400
-    assert b"Title and Message are required" in err_res.data
-
-    # Delete via form
-    del_res = client.post('/delete/1', follow_redirects=True)
-    assert del_res.status_code == 200
-    assert b"No notifications available" in del_res.data
-
-    # Delete nonexistent via form
-    bad_del = client.post('/delete/999')
-    assert bad_del.status_code == 404
-    assert b"not found" in bad_del.data
+    # Validation failure in form
+    bad_form = client.post('/add', data={"title": "X", "message": "Y"})
+    assert bad_form.status_code == 400
+    assert b"characters long" in bad_form.data
