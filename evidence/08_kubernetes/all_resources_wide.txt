@@ -1,0 +1,23 @@
+NAME                                   READY   STATUS    RESTARTS         AGE   IP            NODE        NOMINATED NODE   READINESS GATES
+pod/notification-v1-54cc5c7847-ktzgq   1/1     Running   10 (7m17s ago)   31m   10.42.0.152   victus-tk   <none>           <none>
+pod/notification-v1-54cc5c7847-pggzb   1/1     Running   10 (7m17s ago)   31m   10.42.0.147   victus-tk   <none>           <none>
+pod/notification-v2-84c65fb697-t96f6   1/1     Running   10 (7m17s ago)   31m   10.42.0.144   victus-tk   <none>           <none>
+pod/notification-v2-84c65fb697-vzkp4   1/1     Running   10 (7m17s ago)   31m   10.42.0.145   victus-tk   <none>           <none>
+pod/notification-v3-7f66cd4859-2zdjd   1/1     Running   10 (7m17s ago)   31m   10.42.0.149   victus-tk   <none>           <none>
+pod/notification-v3-7f66cd4859-4mms7   1/1     Running   10 (7m17s ago)   31m   10.42.0.151   victus-tk   <none>           <none>
+
+NAME                              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE   SELECTOR
+service/kubernetes                ClusterIP   10.43.0.1       <none>        443/TCP          60m   <none>
+service/notification-v1-service   NodePort    10.43.74.71     <none>        8081:30081/TCP   45m   app=notification-v1
+service/notification-v2-service   NodePort    10.43.253.114   <none>        8082:30082/TCP   45m   app=notification-v2
+service/notification-v3-service   NodePort    10.43.77.74     <none>        8083:30083/TCP   45m   app=notification-v3
+
+NAME                              READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS        IMAGES                            SELECTOR
+deployment.apps/notification-v1   2/2     2            2           45m   notification-v1   thiru247/notification-system:v1   app=notification-v1
+deployment.apps/notification-v2   2/2     2            2           45m   notification-v2   thiru247/notification-system:v2   app=notification-v2
+deployment.apps/notification-v3   2/2     2            2           45m   notification-v3   thiru247/notification-system:v3   app=notification-v3
+
+NAME                                         DESIRED   CURRENT   READY   AGE   CONTAINERS        IMAGES                            SELECTOR
+replicaset.apps/notification-v1-54cc5c7847   2         2         2       45m   notification-v1   thiru247/notification-system:v1   app=notification-v1,pod-template-hash=54cc5c7847
+replicaset.apps/notification-v2-84c65fb697   2         2         2       45m   notification-v2   thiru247/notification-system:v2   app=notification-v2,pod-template-hash=84c65fb697
+replicaset.apps/notification-v3-7f66cd4859   2         2         2       45m   notification-v3   thiru247/notification-system:v3   app=notification-v3,pod-template-hash=7f66cd4859

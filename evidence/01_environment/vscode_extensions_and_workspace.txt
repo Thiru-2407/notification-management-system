@@ -1,0 +1,37 @@
+=== VS CODE EXTENSIONS INSTALLED ===
+github.vscode-github-actions@0.32.3
+ms-python.debugpy@2026.6.0
+ms-python.python@2026.10.0
+ms-python.vscode-pylance@2026.4.1
+ms-python.vscode-python-envs@1.40.0
+
+
+=== VS CODE WORKSPACE DIRECTORY STRUCTURE ===
+
+FullName                                                                                                     Length
+--------                                                                                                     ------
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\app                                      
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\evidence                                 
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\kubernetes                               
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\tests                                    
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\versions                                 
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\.gitignore                         221   
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\capture_app.py                     2480  
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\capture_screen.ps1                 632   
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\configure_k8s.ps1                  510   
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\Dockerfile                         371   
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\generate_comprehensive_evidence.py 10007 
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\inspect_env.ps1                    3615  
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\Jenkinsfile                        3180  
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\k8s_gateway.py                     2981  
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\playwright_screenshot.py           615   
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\README.md                          3140  
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\requirements.txt                   43    
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\setup_dirs.ps1                     439   
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\setup_docker.sh                    288   
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\simulate_jenkins_pipeline.py       3917  
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\take_screenshot.py                 3647  
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\test_containers.py                 2879  
+C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system\verify_k8s_endpoints.py            2295  
+
+

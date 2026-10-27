@@ -66,12 +66,18 @@ def capture_url(url, output_png):
         browser,
         "--headless=new",
         "--disable-gpu",
+        "--no-sandbox",
+        "--disable-extensions",
         "--hide-scrollbars",
         f"--screenshot={abs_output}",
         "--window-size=1280,850",
         url
     ]
-    res = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+    try:
+        res = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    except subprocess.TimeoutExpired:
+        print(f"Warning: Screenshot process timed out for {url}")
+        return False
     if os.path.exists(abs_output):
         print(f"Browser screenshot saved to {abs_output}")
         return True

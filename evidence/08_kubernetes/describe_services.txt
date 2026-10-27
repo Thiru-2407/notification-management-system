@@ -1,0 +1,55 @@
+﻿Name:                     notification-v1-service
+Namespace:                default
+Labels:                   app=notification-v1
+Annotations:              <none>
+Selector:                 app=notification-v1
+Type:                     NodePort
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.43.74.71
+IPs:                      10.43.74.71
+Port:                     http  8081/TCP
+TargetPort:               8080/TCP
+NodePort:                 http  30081/TCP
+Endpoints:                10.42.0.147:8080,10.42.0.152:8080
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Internal Traffic Policy:  Cluster
+
+
+Name:                     notification-v2-service
+Namespace:                default
+Labels:                   app=notification-v2
+Annotations:              <none>
+Selector:                 app=notification-v2
+Type:                     NodePort
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.43.253.114
+IPs:                      10.43.253.114
+Port:                     http  8082/TCP
+TargetPort:               8080/TCP
+NodePort:                 http  30082/TCP
+Endpoints:                10.42.0.144:8080,10.42.0.145:8080
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Internal Traffic Policy:  Cluster
+
+
+Name:                     notification-v3-service
+Namespace:                default
+Labels:                   app=notification-v3
+Annotations:              <none>
+Selector:                 app=notification-v3
+Type:                     NodePort
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.43.77.74
+IPs:                      10.43.77.74
+Port:                     http  8083/TCP
+TargetPort:               8080/TCP
+NodePort:                 http  30083/TCP
+Endpoints:                10.42.0.149:8080,10.42.0.151:8080
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Internal Traffic Policy:  Cluster

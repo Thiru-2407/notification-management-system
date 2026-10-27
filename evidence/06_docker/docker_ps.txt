@@ -1,0 +1,2 @@
+CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS              PORTS                                                                                          NAMES
+b99735a15946   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   52 minutes ago   Up About a minute   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp, 0.0.0.0:50000->50000/tcp, [::]:50000->50000/tcp   jenkins

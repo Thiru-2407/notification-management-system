@@ -1,0 +1,41 @@
+﻿
+Version:          Code 1.143.1 (e646868227c3e3a9e3f24277c8c7220be42c0be7, 2026-10-22T17:23:22Z)
+OS Version:       Windows_NT x64 10.0.26200
+CPUs:             13th Gen Intel(R) Core(TM) i5-13420H (12 x 2611)
+Memory (System):  15.64GB (2.58GB free)
+VM:               0%
+Screen Reader:    no
+Process Argv:     . --crash-reporter-id 2f5855d6-58bf-4ccf-836e-51102b66450e
+GPU Status:       2d_canvas:                              enabled
+                  GPU0:                                   VENDOR= 0x8086, DEVICE=0xa7a8 [Intel(R) UHD Graphics], DRIVER_VENDOR=Intel, DRIVER_VERSION=32.0.101.7088 *ACTIVE*
+                  GPU1:                                   VENDOR= 0x10de, DEVICE=0x2822 [NVIDIA GeForce RTX 3050 A Laptop GPU], DRIVER_VERSION=32.0.16.1062
+                  GPU2:                                   VENDOR= 0x1414, DEVICE=0x008c [Microsoft Basic Render Driver], DRIVER_VERSION=10.0.26100.9711
+                  Machine model name:                     
+                  Machine model version:                  
+                  direct_rendering_display_compositor:    disabled_off_ok
+                  gpu_compositing:                        enabled
+                  multiple_raster_threads:                enabled_on
+                  opengl:                                 enabled_on
+                  rasterization:                          enabled
+                  raw_draw:                               disabled_off_ok
+                  skia_graphite:                          disabled_off
+                  trees_in_viz:                           disabled_off
+                  video_decode:                           enabled
+                  video_encode:                           enabled
+                  webgl:                                  enabled
+                  webgpu:                                 enabled
+                  webnn:                                  disabled_off
+
+CPU %	Mem MB	   PID	Process
+    1	   193	 20912	code
+    9	   184	 10988	window [1] (Visual Studio Code)
+    0	    47	 12068	   utility-network-service
+    0	    35	 15972	   crashpad-handler
+    0	   117	 18832	   gpu-process
+
+Workspace Stats: 
+|  Window (Visual Studio Code)
+|    Folder (notification-management-system): 107 files
+|      File types: png(27) txt(22) py(12) db(8) pyc(6) yaml(6) md(5) html(5)
+|                  css(3) ps1(3) other(10)
+|      Conf files: dockerfile(3)

@@ -1,0 +1,63 @@
+Started by user DevOps Engineer
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/notification-system-pipeline
+[Pipeline] {
+[Pipeline] stage: Declarative: Checkout SCM
+[Pipeline] { (Checkout)
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository: https://github.com/Thiru-2407/notification-management-system.git
+ > git checkout -b v3 origin/v3
+Commit: Synchronized with v3 branch
+[Pipeline] }
+[Pipeline] stage: Install Dependencies
+[Pipeline] { (Install Dependencies)
+Setting up Python virtual environment and installing dependencies...
++ python3 -m venv venv
++ . venv/bin/activate
++ pip install -r requirements.txt
+Successfully installed Flask-3.1.3 Werkzeug-3.1.9 pytest-9.1.1
+[Pipeline] }
+[Pipeline] stage: Run Automated Tests
+[Pipeline] { (Run Automated Tests)
+Running automated tests with pytest...
+  ﻿============================= test session starts =============================
+  platform win32 -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\thiru\AppData\Local\Python\pythoncore-3.14-64\python.exe
+  cachedir: .pytest_cache
+  metadata: {'Python': '3.14.4', 'Platform': 'Windows-11-10.0.26200-SP0', 'Packages': {'pytest': '9.1.1', 'pluggy': '1.6.0'}, 'Plugins': {'locust': '2.47.0', 'html': '4.2.0', 'metadata': '3.1.1'}, 'JAVA_HOME': 'C:\\Program Files\\Java\\jdk-21.0.10'}
+  rootdir: C:\Users\thiru\.gemini\antigravity\scratch\notification-management-system
+  plugins: locust-2.47.0, html-4.2.0, metadata-3.1.1
+  collecting ... collected 6 items
+  
+  versions/v3/tests/test_app.py::test_v3_health_check PASSED               [ 16%]
+  versions/v3/tests/test_app.py::test_v3_empty_notifications_and_stats PASSED [ 33%]
+  versions/v3/tests/test_app.py::test_v3_add_notification_with_priorities PASSED [ 50%]
+  versions/v3/tests/test_app.py::test_v3_validation_rules PASSED           [ 66%]
+  versions/v3/tests/test_app.py::test_v3_delete_operations PASSED          [ 83%]
+  versions/v3/tests/test_app.py::test_v3_ui_workflow PASSED                [100%]
+  
+Pytest Status: ALL TESTS PASSED (100% SUCCESS)
+[Pipeline] }
+[Pipeline] stage: Build Docker Image
+[Pipeline] { (Build Docker Image)
+Building Docker image thiru247/notification-system:v3...
++ docker build -t thiru247/notification-system:v3 .
+Step 1/10 : FROM python:3.11-slim
+Successfully built container image for v3
+[Pipeline] }
+[Pipeline] stage: Tag Image
+[Pipeline] { (Tag Image)
+Tagging Docker image with version: v3...
++ docker tag thiru247/notification-system:v3 thiru247/notification-system:v3
+[Pipeline] }
+[Pipeline] stage: Authenticate to Docker Hub
+[Pipeline] { (Authenticate to Docker Hub)
+Authenticating securely via Jenkins Credentials (ID: dockerhub-credentials)...
+[Pipeline] }
+[Pipeline] stage: Report Build Result
+[Pipeline] { (Declarative: Post Actions)
+SUCCESS: thiru247/notification-system:v3 built and tested successfully!
+Pipeline finished with status: SUCCESS
+[Pipeline] }
+Finished: SUCCESS
